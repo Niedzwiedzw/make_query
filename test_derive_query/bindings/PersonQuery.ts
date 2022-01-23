@@ -1,6 +1,6 @@
 export interface PersonQuery {
-  first_name: string | null;
-  age: number | null;
-  limit: bigint | null;
-  offset: bigint | null;
+  first_name?: string;
+  age?: number;
+  limit?: bigint;
+  offset?: bigint;
 }

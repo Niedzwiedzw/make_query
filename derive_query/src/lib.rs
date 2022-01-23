@@ -24,18 +24,26 @@ pub fn derive(input: TokenStream) -> TokenStream {
             let name = &f.ident;
             let ty = &f.ty;
             if ty_inner_type("Option", ty).is_some() {
-                quote! {pub #name: #ty}
+                quote! {
+                pub #name: #ty}
             } else {
-                quote! {pub #name: std::option::Option<#ty>}
+                quote! {pub #name: Option<#ty>}
             }
         })
         .chain(
             vec![
-                quote! { pub limit: std::option::Option<i64> },
-                quote! { pub offset: std::option::Option<i64> },
+                quote! { pub limit: Option<i64> },
+                quote! { pub offset: Option<i64> },
             ]
             .into_iter(),
         );
+    #[cfg(feature = "ts-rs")]
+    let fields = fields.map(|field| {
+        quote! {
+            #[ts(optional)]
+            #field
+        }
+    });
 
     let derives = vec![
         quote! {
@@ -77,9 +85,8 @@ pub fn derive(input: TokenStream) -> TokenStream {
                     .map_err(|e| crate::error::QueryError::QueryError(format!("{:?}", e)))
             }
         }
-
-
     };
+    // println!("{}", final_struct.clone().to_string());
 
     final_struct.into()
 }
