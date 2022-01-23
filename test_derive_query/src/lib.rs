@@ -17,5 +17,10 @@ mod tests {
             offset: Some(1),
             first_name: None,
         };
+        let query = PersonPaginationQueryBuilder::default()
+            .age(10)
+            .build()
+            .unwrap();
+        assert_eq!(query.age, Some(10));
     }
 }

@@ -39,7 +39,13 @@ pub fn derive(input: TokenStream) -> TokenStream {
 
     let derives = vec![
         quote! {
-            #[derive(Debug, Clone)]
+            #[derive(Debug, Clone, Default)]
+        },
+        #[cfg(feature = "derive_builder")]
+        quote! {
+            #[derive(derive_builder::Builder)]
+            #[builder(default)]
+            #[builder(setter(strip_option))]
         },
         #[cfg(feature = "serde")]
         quote! {

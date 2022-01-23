@@ -22,3 +22,6 @@ features = [
          "serde-compat",
          "format",
 ]
+
+[dependencies.derive_builder]
+version = "0.10.2"
