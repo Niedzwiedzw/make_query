@@ -24,9 +24,9 @@ pub fn derive(input: TokenStream) -> TokenStream {
             let name = &f.ident;
             let ty = &f.ty;
             if ty_inner_type("Option", ty).is_some() {
-                quote! {#name: #ty}
+                quote! {pub #name: #ty}
             } else {
-                quote! {#name: std::option::Option<#ty>}
+                quote! {pub #name: std::option::Option<#ty>}
             }
         })
         .chain(
