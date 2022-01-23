@@ -1,0 +1,24 @@
+[package]
+name = "test_derive_query"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+derive_query = { path = "../derive_query" }
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+
+[dependencies.ts-rs]
+version = "6.1"
+features = [
+         "chrono-impl",
+         "bigdecimal-impl",
+         "uuid-impl",
+         "bytes-impl",
+         "serde-compat",
+         "format",
+]

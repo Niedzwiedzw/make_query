@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "derive_query",
+    "test_derive_query"
+]

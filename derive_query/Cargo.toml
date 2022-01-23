@@ -1,0 +1,31 @@
+[package]
+name = "derive_query"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+proc-macro = true
+[features]
+default = ["ts-rs", "serde"]
+[dependencies]
+syn = { version = "0.15", features = ["extra-traits"] }
+quote = "0.6"
+proc-macro2 = "0.4"
+
+[dependencies.ts-rs]
+version = "6.1"
+optional = true
+features = [
+         "chrono-impl",
+         "bigdecimal-impl",
+         "uuid-impl",
+         "bytes-impl",
+         "serde-compat",
+         "format",
+]
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+optional = true
