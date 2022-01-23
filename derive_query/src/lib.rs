@@ -57,10 +57,18 @@ pub fn derive(input: TokenStream) -> TokenStream {
             #[ts(export)]
         },
     ];
+    let builder_name = format!("{}Builder", query_name);
+    let builder_ident = syn::Ident::new(&builder_name, name.span());
     let final_struct = quote! {
         #(#derives)*
         pub struct #query_ident {
             #(#fields,)*
+        }
+
+        impl #query_ident {
+            pub fn builder() -> #builder_ident {
+                #builder_ident::default()
+            }
         }
     };
 

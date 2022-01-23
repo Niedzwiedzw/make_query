@@ -17,7 +17,7 @@ mod tests {
             offset: Some(1),
             first_name: None,
         };
-        let query = PersonQueryBuilder::default().age(10).build().unwrap();
+        let query = PersonQuery::builder().age(10).build().unwrap();
         assert_eq!(query.age, Some(10));
     }
 }
