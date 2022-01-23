@@ -7,7 +7,7 @@ use syn::{parse_macro_input, DeriveInput};
 pub fn derive(input: TokenStream) -> TokenStream {
     let ast = parse_macro_input!(input as DeriveInput);
     let name = &ast.ident;
-    let query_name = format!("{}PaginationQuery", name);
+    let query_name = format!("{}Query", name);
     let query_ident = syn::Ident::new(&query_name, name.span());
     let fields = if let syn::Data::Struct(syn::DataStruct {
         fields: syn::Fields::Named(syn::FieldsNamed { ref named, .. }),

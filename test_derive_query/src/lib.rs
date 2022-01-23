@@ -11,16 +11,13 @@ mod tests {
 
     #[test]
     fn test_example_struct() {
-        let query = PersonPaginationQuery {
+        let _query = PersonQuery {
             age: Some(1),
             limit: Some(1),
             offset: Some(1),
             first_name: None,
         };
-        let query = PersonPaginationQueryBuilder::default()
-            .age(10)
-            .build()
-            .unwrap();
+        let query = PersonQueryBuilder::default().age(10).build().unwrap();
         assert_eq!(query.age, Some(10));
     }
 }
