@@ -70,6 +70,15 @@ pub fn derive(input: TokenStream) -> TokenStream {
                 #builder_ident::default()
             }
         }
+
+        impl #builder_ident {
+            pub fn construct(&self) -> std::result::Result<#query_ident, crate::error::QueryError> {
+                self.build()
+                    .map_err(|e| crate::error::QueryError::QueryError(format!("{:?}", e)))
+            }
+        }
+
+
     };
 
     final_struct.into()

@@ -1,3 +1,10 @@
+pub mod error {
+    #[derive(Debug)]
+    pub enum QueryError {
+        QueryError(String),
+    }
+}
+
 use derive_query::PaginationQuery;
 #[derive(PaginationQuery)]
 pub struct Person {
@@ -17,7 +24,7 @@ mod tests {
             offset: Some(1),
             first_name: None,
         };
-        let query = PersonQuery::builder().age(10).build().unwrap();
+        let query = PersonQuery::builder().age(10).construct().unwrap();
         assert_eq!(query.age, Some(10));
     }
 }
