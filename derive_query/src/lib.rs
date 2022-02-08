@@ -32,8 +32,8 @@ pub fn derive(input: TokenStream) -> TokenStream {
         })
         .chain(
             vec![
-                quote! { pub limit: Option<i64> },
-                quote! { pub offset: Option<i64> },
+                quote! { pub limit: Option<i32> },
+                quote! { pub offset: Option<i32> },
             ]
             .into_iter(),
         );
