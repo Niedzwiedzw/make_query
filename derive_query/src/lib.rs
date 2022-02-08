@@ -64,6 +64,10 @@ pub fn derive(input: TokenStream) -> TokenStream {
             #[derive(ts_rs::TS)]
             #[ts(export)]
         },
+        #[cfg(feature = "juniper-input-type")]
+        quote! {
+            #[derive(juniper::GraphQLInputObject)]
+        },
     ];
     let builder_name = format!("{}Builder", query_name);
     let builder_ident = syn::Ident::new(&builder_name, name.span());
