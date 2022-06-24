@@ -7,8 +7,9 @@ edition = "2021"
 [lib]
 proc-macro = true
 [features]
-default = ["ts-rs", "serde", "derive_builder"]
+default = ["serde", "derive_builder"]
 juniper-input-type = []
+async-graphql-input-type = []
 [dependencies]
 syn = { version = "0.15", features = ["extra-traits"] }
 quote = "0.6"

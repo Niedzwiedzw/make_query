@@ -1,7 +1,10 @@
 extern crate proc_macro;
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, DeriveInput};
+use syn::{
+    parse_macro_input,
+    DeriveInput,
+};
 
 #[proc_macro_derive(PaginationQuery)]
 pub fn derive(input: TokenStream) -> TokenStream {
@@ -63,6 +66,10 @@ pub fn derive(input: TokenStream) -> TokenStream {
         quote! {
             #[derive(ts_rs::TS)]
             #[ts(export)]
+        },
+        #[cfg(feature = "async-graphql-input-type")]
+        quote! {
+            #[derive(async_graphql::InputObject)]
         },
         #[cfg(feature = "juniper-input-type")]
         quote! {
